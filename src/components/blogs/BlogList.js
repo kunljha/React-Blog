@@ -5,9 +5,11 @@ const BlogList = ({ blogs, title }) => {
 	return (
 		<div className='blog-list'>
 			<h2>{title}</h2>
-			{blogs.map((blog) => (
-				<BlogItem blog={blog} key={blog.id} />
-			))}
+			{blogs.length > 0 ? (
+				blogs.map((blog) => <BlogItem blog={blog} key={blog.id} />)
+			) : (
+				<div>No Blogs to show!</div>
+			)}
 		</div>
 	)
 }

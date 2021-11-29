@@ -5,6 +5,7 @@ const BlogItem = ({ blog }) => {
 		<div className='blog-item'>
 			<h4>{blog.title}</h4>
 			<p>{blog.author}</p>
+			<i className='fas fa-trash' style={{ cursor: 'pointer' }}></i>
 		</div>
 	)
 }
