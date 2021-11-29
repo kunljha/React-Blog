@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import Spinner from '../layout/Spinner'
 
 const BlogDetails = () => {
 	const [blog, setBlog] = useState(null)
 	const [loading, setLoading] = useState(true)
+
 	const { id } = useParams()
+	const history = useHistory()
 
 	useEffect(() => {
 		fetch(`/blogs/${id}`)
@@ -17,6 +19,14 @@ const BlogDetails = () => {
 			.catch((err) => console.log(err))
 	}, [])
 
+	const handleDelete = () => {
+		fetch(`/blogs/${id}`, {
+			method: DELETE,
+		})
+			.then(() => history.push('/'))
+			.catch((err) => console.log(err))
+	}
+
 	if (loading) {
 		return <Spinner />
 	}
@@ -26,6 +36,7 @@ const BlogDetails = () => {
 			<h3>{blog.title}</h3>
 			<p>{blog.author}</p>
 			<p>{blog.body}</p>
+			<i class='fas fa-trash' onClick={handleDelete}></i>
 		</div>
 	) : (
 		<p>Blog does not exists!</p>
