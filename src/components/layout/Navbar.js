@@ -1,17 +1,21 @@
+import { Link } from 'react-router-dom'
+
 const Navbar = () => {
 	return (
 		<div className='navbar'>
 			<div className='container flex'>
-				<h1>
-					<i className='fab fa-hive'></i> React-Blogs
-				</h1>
+				<Link to='/'>
+					<h1>
+						<i className='fab fa-hive'></i> React-Blogs
+					</h1>
+				</Link>
 				<nav>
 					<ul>
 						<li>
-							<a href='/'>Home</a>
+							<Link to='/'>Home</Link>
 						</li>
 						<li>
-							<a href='/create'>Create Blog</a>
+							<Link to='/create'>Create Blog</Link>
 						</li>
 					</ul>
 				</nav>

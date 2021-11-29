@@ -19,6 +19,10 @@ a {
 	color: #333;
 }
 
+p {
+	padding: 2px 5px;
+}
+
 ul {
 	list-style-type: none;
 	display: flex;
