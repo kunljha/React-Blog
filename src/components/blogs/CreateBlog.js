@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const CreateBlog = () => {
 	const [blog, setBlog] = useState({
@@ -8,7 +8,7 @@ const CreateBlog = () => {
 		body: '',
 	})
 
-	const history = useHistory()
+	const navigate = useNavigate()
 	const { title, author, body } = blog
 
 	// handle change event on input
@@ -22,13 +22,12 @@ const CreateBlog = () => {
 	// handle submit event on form
 	const handleSubmit = (e) => {
 		e.preventDefault()
-
 		fetch('/blogs', {
-			method: POST,
+			method: 'POST',
 			body: JSON.stringify(blog),
 			headers: { 'Content-Type': 'application/json' },
 		})
-			.then(() => history.push('/'))
+			.then(() => navigate('/', { replace: true }))
 			.catch((err) => console.log(err))
 	}
 
@@ -69,8 +68,8 @@ const CreateBlog = () => {
 						rows='8'
 					></textarea>
 				</div>
+				<input type='submit' value='Create' />
 			</form>
-			<input type='submit' value='Create' />
 		</div>
 	)
 }

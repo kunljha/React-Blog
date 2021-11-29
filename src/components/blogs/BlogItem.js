@@ -8,7 +8,6 @@ const BlogItem = ({ blog }) => {
 				<h4>{blog.title}</h4>
 			</Link>
 			<p>{blog.author}</p>
-			<i className='fas fa-trash' style={{ cursor: 'pointer' }}></i>
 		</div>
 	)
 }
