@@ -1,23 +1,12 @@
-import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useFetch } from '../../hooks/useFetch'
 import Spinner from '../layout/Spinner'
 
 const BlogDetails = () => {
-	const [blog, setBlog] = useState(null)
-	const [loading, setLoading] = useState(true)
-
 	const { id } = useParams()
 	const navigate = useNavigate()
 
-	useEffect(() => {
-		fetch(`/blogs/${id}`)
-			.then((res) => res.json())
-			.then((data) => {
-				setBlog(data)
-				setLoading(false)
-			})
-			.catch((err) => console.log(err))
-	}, [id])
+	const { data: blog, loading, error } = useFetch(`/blogs/${id}`)
 
 	const handleDelete = () => {
 		fetch(`/blogs/${id}`, {
@@ -29,6 +18,10 @@ const BlogDetails = () => {
 
 	if (loading) {
 		return <Spinner />
+	}
+
+	if (error) {
+		return <div>{error}</div>
 	}
 
 	return blog ? (

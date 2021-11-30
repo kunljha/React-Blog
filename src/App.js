@@ -5,6 +5,7 @@ import Home from './components/layout/Home'
 import Navbar from './components/layout/Navbar'
 import CreateBlog from './components/blogs/CreateBlog'
 import BlogDetails from './components/blogs/BlogDetails'
+import NotFound from './components/layout/NotFound'
 
 const App = () => {
 	return (
@@ -16,6 +17,7 @@ const App = () => {
 						<Route path='/' element={<Home />} />
 						<Route path='/create' element={<CreateBlog />} />
 						<Route path='/blogs/:id' element={<BlogDetails />} />
+						<Route path='*' element={<NotFound />} />
 					</Routes>
 				</div>
 			</Fragment>
